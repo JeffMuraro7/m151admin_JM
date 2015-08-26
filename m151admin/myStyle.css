@@ -8,3 +8,25 @@
 
     border: solid 2px black;
 }
+
+#title {
+    position: absolute;
+
+    top: 10px;
+
+    height: 50px;
+    width: 900px;
+}
+
+#formulaire {
+    position: absolute;
+
+    top: 50px;
+}
+
+label
+{
+    display: block;
+    width: 150px;
+    float: left;
+}
