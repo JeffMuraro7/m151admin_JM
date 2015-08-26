@@ -1,10 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Muraro Jeff
- * Date: 26.08.2015
- * Time: 13:51
- */
+    /**
+     * Created by PhpStorm.
+     * User: Muraro Jeff
+     * Date: 26.08.2015
+     * Time: 13:51
+     */
+
+    require_once('function.php');
+    require_once('mysqLinc.php');
+
+
 
 ?>
 
