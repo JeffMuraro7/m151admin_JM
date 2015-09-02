@@ -23,28 +23,29 @@
             <form id="formulaire" method="post" action="">
                 <fieldset>
                     <legend>Formulaire</legend>
-                    <label for="nom">Nom :</label>
-                    <input type="text" id="nom" /></br></br>
 
-                    <label for="prenom">Prénom :</label>
-                    <input type="text" id="prenom" /></br></br>
+                    <label class="styleLabel" for="nom">Nom :</label>
+                    <input type="text" id="nom" class="styleInput" required autofocus />
 
-                    <label for="birthday">Date de naissance :</label>
-                    <input type="date" id="birthday" /></br></br>
+                    <label class="styleLabel" for="prenom">Prénom :</label>
+                    <input type="text" id="prenom" class="styleInput" required />
 
-                    <label for="description">Description :</label>
-                    <textarea id="description"></textarea></br></br>
+                    <label class="styleLabel" for="birthday">Date de naissance :</label>
+                    <input type="date" id="birthday" class="styleInput" required />
 
-                    <label for="email">Email :</label>
-                    <input type="email" id="email" /></br></br>
+                    <label class="styleLabel" for="description">Description :</label>
+                    <textarea id="description" class="styleInput" required></textarea>
 
-                    <label for="pseudo">Pseudo :</label>
-                    <input type="text" id="pseudo" /></br></br>
+                    <label class="styleLabel" for="email">Email :</label>
+                    <input type="email" id="email" class="styleInput" required />
 
-                    <label for="password">Mot de passe :</label>
-                    <input type="text" id="password" /></br></br>
+                    <label class="styleLabel" for="pseudo">Pseudo :</label>
+                    <input type="text" id="pseudo" class="styleInput" required />
 
-                    <input type="submit" name="valider" value="Envoyer"/> <input type="reset" name="annuler" value=" Annuler "/>
+                    <label class="styleLabel" for="password">Mot de passe :</label>
+                    <input type="text" id="password" class="styleInput" required /> </br>
+
+                    <input type="submit" name="valider" value="Envoyer" id="valider" /> <input type="reset" name="annuler" value=" Annuler " id="reset" />
                 </fieldset>
             </form>
         </div>

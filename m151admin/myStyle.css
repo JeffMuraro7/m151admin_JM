@@ -4,22 +4,13 @@
     margin: auto;
 
     height: 500px;
-    width: 900px;
-}
-
-#title {
-    position: absolute;
-
-    top: 10px;
-
-    height: 50px;
-    width: 900px;
+    width: 450px;
 }
 
 #formulaire {
     position: absolute;
 
-    top: 50px;
+    top: 10px;
 }
 
 label
@@ -27,4 +18,20 @@ label
     display: block;
     width: 150px;
     float: left;
+}
+
+.styleLabel {
+    margin-bottom: 10px;
+}
+
+.styleInput {
+    margin-bottom: 10px;
+}
+
+#valider {
+    margin-top: 10px;
+}
+
+#reset {
+    margin-top: 10px;
 }

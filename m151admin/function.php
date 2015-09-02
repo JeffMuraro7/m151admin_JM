@@ -7,12 +7,19 @@
      */
 
     //Fonction pour la connection à la base de données.
-    function connectDB($host, $dbname, $user, $pass){
+    function getConnection(){
+
+        static $dbh = null;
+
         try {
-            $dbh = new PDO('mysql:host='.$host.';dbname='.$dbname, $user, $pass);
+            if($dbh == null) {
+                $dbh = new PDO('mysql:host='.HOST.';dbname='.DBNAME,USER,PASS);
+            }
         } catch (PDOException $e) {
-            print "Erreur !: " . $e->getMessage() . "<br/>";
-            die();
+            echo "Erreur !: " . $e->getMessage() . "<br/>";
+            echo 'N° : ' . $e->getCode();
+            die('Could not connect to MySQL');
         }
+
         return $dbh;
     }
