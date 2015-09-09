@@ -55,5 +55,19 @@
         $tab = getConnection()->prepare('SELECT * FROM users;');
         $tab->execute();
         return $tabRequest = $tab->fetchAll(PDO::FETCH_ASSOC);
+    }
 
+    function assocToHtml() {
+        $tableauHtml = "<table>";
+
+        $tab = selectUser();
+
+        foreach($tab as $value)
+        {
+            $tableauHtml += "<tr><td>" . $value['pseudo'] . "</td></tr>";
+        }
+
+        $tableauHtml += "</table>";
+
+        return $tableauHtml;
     }

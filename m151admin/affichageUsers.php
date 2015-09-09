@@ -1,14 +1,9 @@
 <!DOCTYPE html>
 
 <?php
+    include 'function.php';
 
-
-$tab = selectUser();
-
-foreach($tab as $value)
-{
-    echo $value['pseudo'];
-}
+    $tab = assocToHtml();
 ?>
 
 <html lang="en">
@@ -19,7 +14,9 @@ foreach($tab as $value)
 </head>
     <body>
         <div id="center">
-
+            <?php
+                echo $tab;
+            ?>
         </div>
     </body>
 </html>

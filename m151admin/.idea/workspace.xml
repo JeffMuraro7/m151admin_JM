@@ -35,8 +35,8 @@
       <file leaf-file-name="affichageUsers.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/affichageUsers.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.5384617">
-              <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+            <state vertical-scroll-proportion="-11.115385">
+              <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -45,13 +45,13 @@
       <file leaf-file-name="function.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/function.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8818076">
-              <caret line="58" column="5" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.7636153">
+              <caret line="66" column="24" selection-start-line="66" selection-start-column="24" selection-end-line="66" selection-end-column="24" />
               <folding>
                 <element signature="e#10#117#0#PHP" expanded="true" />
-                <marker date="1441804324000" expanded="true" signature="1232:1251" placeholder="INSERT INTO ..." />
-                <marker date="1441804324000" expanded="true" signature="1232:1386" placeholder="INSERT INTO ..." />
-                <marker date="1441804324000" expanded="true" signature="1980:1999" placeholder="SELECT * FRO..users..." />
+                <marker date="1441806588000" expanded="true" signature="1232:1251" placeholder="INSERT INTO ..." />
+                <marker date="1441806588000" expanded="true" signature="1232:1386" placeholder="INSERT INTO ..." />
+                <marker date="1441806588000" expanded="true" signature="1980:1999" placeholder="SELECT * FRO..users..." />
               </folding>
             </state>
           </provider>
@@ -96,8 +96,8 @@
         <option value="$PROJECT_DIR$/myStyle.css" />
         <option value="$PROJECT_DIR$/mysqLinc.php" />
         <option value="$PROJECT_DIR$/index.php" />
-        <option value="$PROJECT_DIR$/affichageUsers.php" />
         <option value="$PROJECT_DIR$/function.php" />
+        <option value="$PROJECT_DIR$/affichageUsers.php" />
       </list>
     </option>
   </component>
@@ -225,7 +225,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
+    <frame x="-8" y="-8" width="1696" height="1026" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.119642854" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -278,9 +278,9 @@
           <caret line="34" column="35" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
           <folding>
             <element signature="e#10#117#0#PHP" expanded="true" />
-            <marker date="1441804324000" expanded="true" signature="1232:1251" placeholder="INSERT INTO ..." />
-            <marker date="1441804324000" expanded="true" signature="1232:1386" placeholder="INSERT INTO ..." />
-            <marker date="1441804324000" expanded="true" signature="1980:1999" placeholder="SELECT * FRO..users..." />
+            <marker date="1441806588000" expanded="true" signature="1232:1251" placeholder="INSERT INTO ..." />
+            <marker date="1441806588000" expanded="true" signature="1232:1386" placeholder="INSERT INTO ..." />
+            <marker date="1441806588000" expanded="true" signature="1980:1999" placeholder="SELECT * FRO..users..." />
           </folding>
         </state>
       </provider>
@@ -317,9 +317,9 @@
           <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="17" selection-end-column="5" />
           <folding>
             <element signature="e#10#117#0#PHP" expanded="true" />
-            <marker date="1441804324000" expanded="true" signature="1232:1251" placeholder="INSERT INTO ..." />
-            <marker date="1441804324000" expanded="true" signature="1232:1386" placeholder="INSERT INTO ..." />
-            <marker date="1441804324000" expanded="true" signature="1980:1999" placeholder="SELECT * FRO..users..." />
+            <marker date="1441806588000" expanded="true" signature="1232:1251" placeholder="INSERT INTO ..." />
+            <marker date="1441806588000" expanded="true" signature="1232:1386" placeholder="INSERT INTO ..." />
+            <marker date="1441806588000" expanded="true" signature="1980:1999" placeholder="SELECT * FRO..users..." />
           </folding>
         </state>
       </provider>
@@ -366,14 +366,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.576923">
-          <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mysqLinc.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-7.8461537">
@@ -384,23 +376,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.576923">
+          <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/affichageUsers.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.5384617">
-          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+        <state vertical-scroll-proportion="-11.115385">
+          <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/function.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8818076">
-          <caret line="58" column="5" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.7636153">
+          <caret line="66" column="24" selection-start-line="66" selection-start-column="24" selection-end-line="66" selection-end-column="24" />
           <folding>
             <element signature="e#10#117#0#PHP" expanded="true" />
-            <marker date="1441804324000" expanded="true" signature="1232:1251" placeholder="INSERT INTO ..." />
-            <marker date="1441804324000" expanded="true" signature="1232:1386" placeholder="INSERT INTO ..." />
-            <marker date="1441804324000" expanded="true" signature="1980:1999" placeholder="SELECT * FRO..users..." />
+            <marker date="1441806588000" expanded="true" signature="1232:1251" placeholder="INSERT INTO ..." />
+            <marker date="1441806588000" expanded="true" signature="1232:1386" placeholder="INSERT INTO ..." />
+            <marker date="1441806588000" expanded="true" signature="1980:1999" placeholder="SELECT * FRO..users..." />
           </folding>
         </state>
       </provider>
