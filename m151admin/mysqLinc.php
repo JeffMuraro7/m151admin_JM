@@ -11,5 +11,4 @@
     DEFINE("DBNAME", "m151admin");
     DEFINE("USER", "m151admin");
     DEFINE("PASS", "voua7-poqu");
-
 ?>

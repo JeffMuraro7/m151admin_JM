@@ -1,4 +1,13 @@
 <!DOCTYPE html>
+
+<?php
+    include 'function.php';
+
+    if(isset($_REQUEST['Valider'])) {
+        insertUser();
+    }
+?>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,7 +16,7 @@
 </head>
     <body>
         <div id="center">
-            <form id="formulaire" method="post" action="function.php">
+            <form id="formulaire" method="post" action="index.php">
                 <fieldset>
                     <legend>Formulaire</legend>
 
@@ -30,9 +39,9 @@
                     <input type="text" id="pseudo" name="pseudo" class="styleInput" required />
 
                     <label class="styleLabel" for="password">Mot de passe :</label>
-                    <input type="text" id="password" name="password" class="styleInput" required /> </br>
+                    <input type="password" id="password" name="password" class="styleInput" required /> </br>
 
-                    <input type="submit" name="valider" value="Envoyer" id="valider" /> <input type="reset" name="annuler" value=" Annuler " id="reset" />
+                    <input type="submit" name="Valider" value="Envoyer" id="valider" /> <input type="reset" name="Reset" value=" Annuler " id="reset" />
                 </fieldset>
             </form>
         </div>

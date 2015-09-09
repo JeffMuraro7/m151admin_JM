@@ -14,8 +14,9 @@
         static $dbh = null;
 
         try {
-            if($dbh == null) {
+            if($dbh === null) {
                 $dbh = new PDO('mysql:host='.HOST.';dbname='.DBNAME,USER,PASS);
+                $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             }
         } catch (PDOException $e) {
             echo "Erreur !: " . $e->getMessage() . "<br/>";
@@ -26,23 +27,17 @@
         return $dbh;
     }
 
-    if(isset($_POST['valider'])) {
-        insertUser();
-    }
-
     function insertUser(){
-        $nom = $_POST['nom'];
-        $prenom = $_POST['prenom'];
-        $birthday = $_POST['birthday'];
-        $description = $_POST['description'];
-        $email = $_POST['email'];
-        $pseudo = $_POST['pseudo'];
-        $password = $_POST['password'];
+        $nom = $_REQUEST['nom'];
+        $prenom = $_REQUEST['prenom'];
+        $birthday = $_REQUEST['birthday'];
+        $description = $_REQUEST['description'];
+        $email = $_REQUEST['email'];
+        $pseudo = $_REQUEST['pseudo'];
+        $password = sha1($_REQUEST['password']);
 
-        $dbh = getConnection();
-
-        if((!isset($nom) == "") && (!isset($prenom) == "") && (!isset($birthday) == "") && (!isset($description) == "") && (!isset($email) == "") && (!isset($pseudo) == "") && (!isset($password) == "")) {
-            $user = getConnection()->prepare('INSERT INTO users VALUES("":nom, :prenom, :birthday, :description, :email, :pseudo, :password)');
+        if((isset($nom)) && (isset($prenom)) && (isset($birthday)) && (isset($description)) && (isset($email)) && (isset($pseudo)) && (isset($password))) {
+            $user = getConnection()->prepare('INSERT INTO users (nom, prenom, dateNaissance, description, email, pseudo, mdp) VALUES(:nom, :prenom, :birthday, :description, :email, :pseudo, :password);');
 
             $user->bindParam(':nom', $nom, PDO::PARAM_STR);
             $user->bindParam(':prenom', $prenom, PDO::PARAM_STR);
@@ -51,9 +46,14 @@
             $user->bindParam(':email', $email, PDO::PARAM_STR);
             $user->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
             $user->bindParam(':password', $password, PDO::PARAM_STR);
-            return $user;
-        }
-        else {
 
+            $user->execute();
         }
+    }
+
+    function selectUser(){
+        $tab = getConnection()->prepare('SELECT * FROM users;');
+        $tab->execute();
+        return $tabRequest = $tab->fetchAll(PDO::FETCH_ASSOC);
+
     }
