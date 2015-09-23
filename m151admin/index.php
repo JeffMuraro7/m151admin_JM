@@ -3,8 +3,18 @@
 <?php
     include 'function.php';
 
+    
+    
     if(isset($_REQUEST['Valider'])) {
-        insertUser();
+        $nom = $_REQUEST['nom'];
+        $prenom = $_REQUEST['prenom'];
+        $birthday = $_REQUEST['birthday'];
+        $description = $_REQUEST['description'];
+        $email = $_REQUEST['email'];
+        $pseudo = $_REQUEST['pseudo'];
+        $password = sha1($_REQUEST['password']);
+        
+        insertUser($nom, $prenom, $birthday, $description, $email, $pseudo, $password);
     }
 ?>
 
@@ -16,6 +26,11 @@
 </head>
     <body>
         <div id="center">
+            <nav>
+                <a href="affichageUsers.php">Liste utilisateurs</a>
+            </nav>
+
+
             <form id="formulaire" method="post" action="index.php">
                 <fieldset>
                     <legend>Formulaire</legend>

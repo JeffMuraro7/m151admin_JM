@@ -7,10 +7,17 @@
     width: 450px;
 }
 
-#formulaire {
-    position: absolute;
+#centerUsers {
+    position: relative;
 
-    top: 10px;
+    margin: auto;
+
+    height: 500px;
+    width: 800px;
+}
+
+nav {
+    height: 50px;
 }
 
 label
@@ -34,4 +41,25 @@ label
 
 #reset {
     margin-top: 10px;
+}
+
+table tr td {
+    padding: 5px;
+    
+    border: black groove 2px;
+}
+
+.noBorder {
+    border: none;
+}
+
+td a {
+    color: black;
+    background-color: deepskyblue;
+    text-decoration: none;
+    
+    padding-left: 10px;
+    padding-right: 10px;
+    
+    border-radius: 5px;
 }

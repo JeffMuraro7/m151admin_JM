@@ -2,8 +2,9 @@
 
 <?php
     include 'function.php';
-
-    $tab = assocToHtml();
+    include 'functionTable.php';
+    
+    
 ?>
 
 <html lang="en">
@@ -13,9 +14,21 @@
     <link rel="stylesheet" type="text/css" href="myStyle.css" />
 </head>
     <body>
-        <div id="center">
+        <div id="centerUsers">
+            <nav>
+                <a href="index.php">Inscription</a>
+            </nav>
+
             <?php
-                echo $tab;
+                if(!isset($_REQUEST['id']))
+                {
+                    $tabAllUser = buildAllTable();
+                    echo $tabAllUser;
+                }
+                else {
+                    $tabDetailUser = buildDetailTable();
+                    echo $tabDetailUser;
+                }
             ?>
         </div>
     </body>

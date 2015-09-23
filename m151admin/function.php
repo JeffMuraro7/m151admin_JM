@@ -8,7 +8,7 @@
 
     require_once('mysqLinc.php');
 
-    //Fonction pour la connection à la base de données.
+    //Fonction pour la connection ï¿½ la base de donnï¿½es.
     function getConnection(){
 
         static $dbh = null;
@@ -20,22 +20,14 @@
             }
         } catch (PDOException $e) {
             echo "Erreur !: " . $e->getMessage() . "<br/>";
-            echo 'N° : ' . $e->getCode();
+            echo 'Nï¿½ : ' . $e->getCode();
             die('Could not connect to MySQL');
         }
 
         return $dbh;
     }
 
-    function insertUser(){
-        $nom = $_REQUEST['nom'];
-        $prenom = $_REQUEST['prenom'];
-        $birthday = $_REQUEST['birthday'];
-        $description = $_REQUEST['description'];
-        $email = $_REQUEST['email'];
-        $pseudo = $_REQUEST['pseudo'];
-        $password = sha1($_REQUEST['password']);
-
+    function insertUser($nom, $prenom, $birthday, $description, $email, $pseudo, $password) {
         if((isset($nom)) && (isset($prenom)) && (isset($birthday)) && (isset($description)) && (isset($email)) && (isset($pseudo)) && (isset($password))) {
             $user = getConnection()->prepare('INSERT INTO users (nom, prenom, dateNaissance, description, email, pseudo, mdp) VALUES(:nom, :prenom, :birthday, :description, :email, :pseudo, :password);');
 
@@ -51,23 +43,14 @@
         }
     }
 
-    function selectUser(){
+    function selectAllUser(){
         $tab = getConnection()->prepare('SELECT * FROM users;');
         $tab->execute();
         return $tabRequest = $tab->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    function assocToHtml() {
-        $tableauHtml = "<table>";
-
-        $tab = selectUser();
-
-        foreach($tab as $value)
-        {
-            $tableauHtml += "<tr><td>" . $value['pseudo'] . "</td></tr>";
-        }
-
-        $tableauHtml += "</table>";
-
-        return $tableauHtml;
+    function selectOneUser($idUserSearch) {
+        $tab = getConnection()->prepare('SELECT * FROM users WHERE idUser = '. $idUserSearch .';');
+        $tab->execute();
+        return $tabRequest = $tab->fetchAll(PDO::FETCH_ASSOC);
     }

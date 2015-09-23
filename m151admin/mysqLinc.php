@@ -6,7 +6,7 @@
      * Time: 15:49
      */
 
-    //Définition des constantes pour la connexion de la base de donnée.
+    //Dï¿½finition des constantes pour la connexion de la base de donnï¿½e.
     DEFINE("HOST", "127.0.0.1");    //Mieux de mettre l'adresse IP au lieu de localhost
     DEFINE("DBNAME", "m151admin");
     DEFINE("USER", "m151admin");
