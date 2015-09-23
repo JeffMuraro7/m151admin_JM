@@ -43,6 +43,10 @@
         }
     }
 
+//    function updateUser($nom, $prenom, $birthday, $description, $email, $pseudo, $password) {
+//        
+//    }
+    
     function selectAllUser(){
         $tab = getConnection()->prepare('SELECT * FROM users;');
         $tab->execute();
