@@ -3,8 +3,6 @@
 <?php
     include 'function.php';
     include 'functionTable.php';
-    
-    
 ?>
 
 <html lang="en">
