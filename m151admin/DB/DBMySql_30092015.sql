@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 30 Septembre 2015 à 14:37
+-- Généré le :  Mer 30 Septembre 2015 à 16:03
 -- Version du serveur :  5.6.15-log
 -- Version de PHP :  5.5.8
 
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `mdp` varchar(50) NOT NULL,
   PRIMARY KEY (`idUser`),
   UNIQUE KEY `pseudo` (`pseudo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
 
 --
 -- Contenu de la table `users`
