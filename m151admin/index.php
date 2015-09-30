@@ -38,8 +38,7 @@
             $email = $value['email'];
             $pseudo = $value['pseudo'];
             $placeholder= "Laissez vide si vous ne voulez pas le changer!";
-    }
-    
+    }    
     if(isset($_REQUEST['Modifier'])) {
         $nom = $_REQUEST['nom'];
         $prenom = $_REQUEST['prenom'];

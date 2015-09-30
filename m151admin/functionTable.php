@@ -21,14 +21,11 @@
             $idUserSearch = $_REQUEST['id'];
         }
         
-        $tab = selectOneUser($idUserSearch);
+        $value = selectOneUser($idUserSearch);
 
-        foreach($tab as $value)
-        {
-            $tableauDetail .= "<tr><td> Nom </td><td> Prenom </td><td> Date de naissance </td><td> Description </td><td> Pseudo </td><td> Email </td></tr>";
-            $tableauDetail .= "<tr><td>" . $value['nom'] . "</td><td>". $value['prenom'] ."</td><td>". $value['dateNaissance'] ."</td><td>". $value['description'] ."</td><td>". $value['pseudo'] ."</td><td>". $value['email'] ."</td></tr>";
-            $tableauDetail .= "<tr class='noBorder'><td class='noBorder'></td><td class='noBorder'></td><td class='noBorder'></td><td class='noBorder'></td><td class='noBorder'></td><td class='noBorder'><a href='affichageUsers.php'>Back</a></td></tr>";
-        }
+        $tableauDetail .= "<tr><td> Nom </td><td> Prenom </td><td> Date de naissance </td><td> Description </td><td> Pseudo </td><td> Email </td></tr>";
+        $tableauDetail .= "<tr><td>" . $value['nom'] . "</td><td>". $value['prenom'] ."</td><td>". $value['dateNaissance'] ."</td><td>". $value['description'] ."</td><td>". $value['pseudo'] ."</td><td>". $value['email'] ."</td></tr>";
+        $tableauDetail .= "<tr class='noBorder'><td class='noBorder'></td><td class='noBorder'></td><td class='noBorder'></td><td class='noBorder'></td><td class='noBorder'></td><td class='noBorder'><a href='affichageUsers.php'>Back</a></td></tr>";
 
         $tableauDetail .= "</table>";
 
