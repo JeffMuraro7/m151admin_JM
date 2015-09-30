@@ -18,6 +18,12 @@
             </nav>
 
             <?php
+                if(isset($_REQUEST['idDelete']))
+                {
+                    $idDelete = $_REQUEST['idDelete'];  
+                    deleteUser($idDelete);
+                    header('location:affichageUsers.php');
+                }
                 if(!isset($_REQUEST['id']))
                 {
                     $tabAllUser = buildAllTable();

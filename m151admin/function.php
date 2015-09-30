@@ -29,15 +29,17 @@
 
     function insertUser($nom, $prenom, $birthday, $description, $email, $pseudo, $password) {
         if((isset($nom)) && (isset($prenom)) && (isset($birthday)) && (isset($description)) && (isset($email)) && (isset($pseudo)) && (isset($password))) {
+             $shaPassword = sha1($password);
+            
             $user = getConnection()->prepare('INSERT INTO users (nom, prenom, dateNaissance, description, email, pseudo, mdp) VALUES(:nom, :prenom, :birthday, :description, :email, :pseudo, :password);');
-
+            
             $user->bindParam(':nom', $nom, PDO::PARAM_STR);
             $user->bindParam(':prenom', $prenom, PDO::PARAM_STR);
             $user->bindParam(':birthday', $birthday, PDO::PARAM_STR);
             $user->bindParam(':description', $description, PDO::PARAM_STR);
             $user->bindParam(':email', $email, PDO::PARAM_STR);
             $user->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
-            $user->bindParam(':password', sha1($password), PDO::PARAM_STR);
+            $user->bindParam(':password', $shaPassword, PDO::PARAM_STR);
 
             $user->execute();
         }
@@ -47,16 +49,24 @@
         if((isset($nom)) && (isset($prenom)) && (isset($birthday)) && (isset($description)) && (isset($email)) && (isset($pseudo)) && (isset($password)) && (isset($id))) {
             $user = getConnection()->prepare('UPDATE users SET nom=:nom, prenom=:prenom, dateNaissance=:birthday, description=:description, email=:email, pseudo=:pseudo, mdp=:password WHERE idUser = '. $id .';');
 
+            $shaPassword = sha1($password);
+            
             $user->bindParam(':nom', $nom, PDO::PARAM_STR);
             $user->bindParam(':prenom', $prenom, PDO::PARAM_STR);
             $user->bindParam(':birthday', $birthday, PDO::PARAM_STR);
             $user->bindParam(':description', $description, PDO::PARAM_STR);
             $user->bindParam(':email', $email, PDO::PARAM_STR);
             $user->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
-            $user->bindParam(':password', sha1($password), PDO::PARAM_STR);
+            $user->bindParam(':password', $shaPassword, PDO::PARAM_STR);
 
             $user->execute();
         }
+    }
+    
+    function deleteUser($idDelete) {
+        $deleteUser = getConnection()->prepare('DELETE FROM users WHERE idUser='. $idDelete .';');
+        $deleteUser->execute();
+        
     }
     
     function selectAllUser(){

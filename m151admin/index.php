@@ -13,6 +13,7 @@
         $password = $_REQUEST['password'];
         
         insertUser($nom, $prenom, $birthday, $description, $email, $pseudo, $password);
+        header('location:affichageUsers.php');
     }
     
     $id="";
@@ -30,14 +31,14 @@
         
         $value = selectOneUser($idUserSearch);
         
-            $id = $value['idUser'];
-            $nom = $value['nom'];
-            $prenom = $value['prenom'];
-            $birthday = $value['dateNaissance'];
-            $description = $value['description'];
-            $email = $value['email'];
-            $pseudo = $value['pseudo'];
-            $placeholder= "Laissez vide si vous ne voulez pas le changer!";
+        $id = $value['idUser'];
+        $nom = $value['nom'];
+        $prenom = $value['prenom'];
+        $birthday = $value['dateNaissance'];
+        $description = $value['description'];
+        $email = $value['email'];
+        $pseudo = $value['pseudo'];
+        $placeholder= "Laissez vide si vous ne voulez pas le changer!";
     }    
     if(isset($_REQUEST['Modifier'])) {
         $nom = $_REQUEST['nom'];

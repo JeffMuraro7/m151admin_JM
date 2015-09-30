@@ -6,7 +6,7 @@
 
         foreach($tab as $value)
         {
-            $tableauAll .= "<tr><td>" . $value['nom'] . "</td><td>". $value['prenom'] ."</td><td class='noBorder'><a href='affichageUsers.php?id=". $value['idUser'] ."'>Détail</a></td><td class='noBorder'><a href='index.php?id=". $value['idUser'] ."'>Modifier</a></td></tr>";
+            $tableauAll .= "<tr><td>" . $value['nom'] . "</td><td>". $value['prenom'] ."</td><td class='noBorder'><a href='affichageUsers.php?id=". $value['idUser'] ."'>Détail</a></td><td class='noBorder'><a href='index.php?id=". $value['idUser'] ."'>Modifier</a></td><td class='noBorder'><a href='affichageUsers.php?idDelete=". $value['idUser'] ."'>Supprimer</a></td></tr>";
         }
 
         $tableauAll .= "</table>";
