@@ -43,9 +43,21 @@
         }
     }
 
-//    function updateUser($nom, $prenom, $birthday, $description, $email, $pseudo, $password) {
-//        
-//    }
+    function updateUser($nom, $prenom, $birthday, $description, $email, $pseudo, $password, $id) {
+        if((isset($nom)) && (isset($prenom)) && (isset($birthday)) && (isset($description)) && (isset($email)) && (isset($pseudo)) && (isset($password)) && (isset($id))) {
+            $user = getConnection()->prepare('UPDATE users SET nom=:nom, prenom=:prenom, dateNaissance=:birthday, description=:description, email=:email, pseudo=:pseudo, mdp=:password WHERE idUser = '. $id .';');
+
+            $user->bindParam(':nom', $nom, PDO::PARAM_STR);
+            $user->bindParam(':prenom', $prenom, PDO::PARAM_STR);
+            $user->bindParam(':birthday', $birthday, PDO::PARAM_STR);
+            $user->bindParam(':description', $description, PDO::PARAM_STR);
+            $user->bindParam(':email', $email, PDO::PARAM_STR);
+            $user->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
+            $user->bindParam(':password', $password, PDO::PARAM_STR);
+
+            $user->execute();
+        }
+    }
     
     function selectAllUser(){
         $tab = getConnection()->prepare('SELECT * FROM users;');
@@ -56,5 +68,5 @@
     function selectOneUser($idUserSearch) {
         $tab = getConnection()->prepare('SELECT * FROM users WHERE idUser = '. $idUserSearch .';');
         $tab->execute();
-        return $tabRequest = $tab->fetchAll(PDO::FETCH_ASSOC);
+        return $tabRequest = $tab->fetch(PDO::FETCH_ASSOC);
     }

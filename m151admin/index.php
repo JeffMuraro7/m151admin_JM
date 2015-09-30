@@ -15,30 +15,49 @@
         insertUser($nom, $prenom, $birthday, $description, $email, $pseudo, $password);
     }
     
+    $id="";
     $nom = "";
     $prenom = "";
     $birthday = "";
     $description = "";
     $email = "";
     $pseudo = "";
-    $password = "";
+    $placeholder = "";
     
     if(isset($_REQUEST['id']))
     {
         $idUserSearch = $_REQUEST['id'];
         
-        $tab = selectOneUser($idUserSearch);
+        $value = selectOneUser($idUserSearch);
         
-        foreach($tab as $value)
-        {
+            $id = $value['idUser'];
             $nom = $value['nom'];
             $prenom = $value['prenom'];
             $birthday = $value['dateNaissance'];
             $description = $value['description'];
             $email = $value['email'];
             $pseudo = $value['pseudo'];
-            $password = "Laissez vide si vous ne voulez pas le changer!";
+            $placeholder= "Laissez vide si vous ne voulez pas le changer!";
+    }
+    
+    if(isset($_REQUEST['Modifier'])) {
+        $nom = $_REQUEST['nom'];
+        $prenom = $_REQUEST['prenom'];
+        $birthday = $_REQUEST['birthday'];
+        $description = $_REQUEST['description'];
+        $email = $_REQUEST['email'];
+        $pseudo = $_REQUEST['pseudo'];
+        
+        if(empty($_REQUEST['password'])) {
+            $password = $value['mdp'];
+        } else {
+            $password = sha1($_REQUEST['password']);
         }
+        
+        $id = $_REQUEST['id'];
+        
+        updateUser($nom, $prenom, $birthday, $description, $email, $pseudo, $password, $id);
+        header('location:affichageUsers.php');
     }
 ?>
 
@@ -58,6 +77,8 @@
             <form id="formulaire" method="post" action="index.php">
                 <fieldset>
                     <legend>Formulaire</legend>
+                    
+                    <input type="hidden" id="id" name="id" value="<?php echo $id ?>" />
 
                     <label class="styleLabel" for="nom">Nom :</label>
                     <input type="text" id="nom" name="nom" class="styleInput" value="<?php echo $nom ?>" required autofocus />
@@ -78,7 +99,7 @@
                     <input type="text" id="pseudo" name="pseudo" class="styleInput" value="<?php echo $pseudo ?>" required />
 
                     <label class="styleLabel" for="password">Mot de passe :</label>
-                    <input type="password" id="password" name="password" class="styleInput" placeholder="<?php echo $password ?>" /> </br>
+                    <input type="password" id="password" name="password" class="styleInput" placeholder="<?php echo $placeholder ?>" /> </br>
                     
                     <?php
                         if(isset($_REQUEST['id'])) {
