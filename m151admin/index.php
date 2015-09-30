@@ -10,7 +10,7 @@
         $description = $_REQUEST['description'];
         $email = $_REQUEST['email'];
         $pseudo = $_REQUEST['pseudo'];
-        $password = sha1($_REQUEST['password']);
+        $password = $_REQUEST['password'];
         
         insertUser($nom, $prenom, $birthday, $description, $email, $pseudo, $password);
     }
@@ -50,7 +50,7 @@
         if(empty($_REQUEST['password'])) {
             $password = $value['mdp'];
         } else {
-            $password = sha1($_REQUEST['password']);
+            $password = $_REQUEST['password'];
         }
         
         $id = $_REQUEST['id'];

@@ -37,7 +37,7 @@
             $user->bindParam(':description', $description, PDO::PARAM_STR);
             $user->bindParam(':email', $email, PDO::PARAM_STR);
             $user->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
-            $user->bindParam(':password', $password, PDO::PARAM_STR);
+            $user->bindParam(':password', sha1($password), PDO::PARAM_STR);
 
             $user->execute();
         }
@@ -53,7 +53,7 @@
             $user->bindParam(':description', $description, PDO::PARAM_STR);
             $user->bindParam(':email', $email, PDO::PARAM_STR);
             $user->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
-            $user->bindParam(':password', $password, PDO::PARAM_STR);
+            $user->bindParam(':password', sha1($password), PDO::PARAM_STR);
 
             $user->execute();
         }
