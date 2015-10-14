@@ -1,83 +1,88 @@
 <!DOCTYPE html>
 
 <?php
-    include 'function.php';
+include 'function.php';
 
-    if(isset($_REQUEST['Valider'])) {
-        $nom = $_REQUEST['nom'];
-        $prenom = $_REQUEST['prenom'];
-        $birthday = $_REQUEST['birthday'];
-        $description = $_REQUEST['description'];
-        $email = $_REQUEST['email'];
-        $pseudo = $_REQUEST['pseudo'];
+if (isset($_REQUEST['Valider'])) {
+    $nom = $_REQUEST['nom'];
+    $prenom = $_REQUEST['prenom'];
+    $birthday = $_REQUEST['birthday'];
+    $description = $_REQUEST['description'];
+    $email = $_REQUEST['email'];
+    $pseudo = $_REQUEST['pseudo'];
+    $password = $_REQUEST['password'];
+
+    insertUser($nom, $prenom, $birthday, $description, $email, $pseudo, $password);
+    header('location:affichageUsers.php');
+}
+
+$id = "";
+$nom = "";
+$prenom = "";
+$birthday = "";
+$description = "";
+$email = "";
+$pseudo = "";
+$placeholder = "";
+
+if (isset($_REQUEST['id'])) {
+    $idUserSearch = $_REQUEST['id'];
+
+    $value = selectOneUser($idUserSearch);
+
+    $id = $value['idUser'];
+    $nom = $value['nom'];
+    $prenom = $value['prenom'];
+    $birthday = $value['dateNaissance'];
+    $description = $value['description'];
+    $email = $value['email'];
+    $pseudo = $value['pseudo'];
+    $placeholder = "Laissez vide si vous ne voulez pas le changer!";
+}
+if (isset($_REQUEST['Modifier'])) {
+    $nom = $_REQUEST['nom'];
+    $prenom = $_REQUEST['prenom'];
+    $birthday = $_REQUEST['birthday'];
+    $description = $_REQUEST['description'];
+    $email = $_REQUEST['email'];
+    $pseudo = $_REQUEST['pseudo'];
+
+    if (empty($_REQUEST['password'])) {
+        $password = $value['mdp'];
+    } else {
         $password = $_REQUEST['password'];
-        
-        insertUser($nom, $prenom, $birthday, $description, $email, $pseudo, $password);
-        header('location:affichageUsers.php');
     }
-    
-    $id="";
-    $nom = "";
-    $prenom = "";
-    $birthday = "";
-    $description = "";
-    $email = "";
-    $pseudo = "";
-    $placeholder = "";
-    
-    if(isset($_REQUEST['id']))
-    {
-        $idUserSearch = $_REQUEST['id'];
-        
-        $value = selectOneUser($idUserSearch);
-        
-        $id = $value['idUser'];
-        $nom = $value['nom'];
-        $prenom = $value['prenom'];
-        $birthday = $value['dateNaissance'];
-        $description = $value['description'];
-        $email = $value['email'];
-        $pseudo = $value['pseudo'];
-        $placeholder= "Laissez vide si vous ne voulez pas le changer!";
-    }    
-    if(isset($_REQUEST['Modifier'])) {
-        $nom = $_REQUEST['nom'];
-        $prenom = $_REQUEST['prenom'];
-        $birthday = $_REQUEST['birthday'];
-        $description = $_REQUEST['description'];
-        $email = $_REQUEST['email'];
-        $pseudo = $_REQUEST['pseudo'];
-        
-        if(empty($_REQUEST['password'])) {
-            $password = $value['mdp'];
-        } else {
-            $password = $_REQUEST['password'];
-        }
-        
-        $id = $_REQUEST['id'];
-        
-        updateUser($nom, $prenom, $birthday, $description, $email, $pseudo, $password, $id);
-        header('location:affichageUsers.php');
-    }
+
+    $id = $_REQUEST['id'];
+
+    updateUser($nom, $prenom, $birthday, $description, $email, $pseudo, $password, $id);
+    header('location:affichageUsers.php');
+}
+
+
+if (isset($_SESSION['login_user'])) {
+    header("location: affichageUsers.php");
+}
 ?>
 
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>m151admin</title>
-    <link rel="stylesheet" type="text/css" href="myStyle.css" />
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>m151admin</title>
+        <link rel="stylesheet" type="text/css" href="myStyle.css" />
+    </head>
     <body>
         <div id="center">
             <nav>
-                <a href="affichageUsers.php">Liste utilisateurs</a>
+                <a href="affichageUsers.php">Liste utilisateurs</a><br />
+                <a href="login.php">Login</a>
             </nav>
 
 
             <form id="formulaire" method="post" action="index.php">
                 <fieldset>
                     <legend>Formulaire</legend>
-                    
+
                     <input type="hidden" id="id" name="id" value="<?php echo $id ?>" />
 
                     <label class="styleLabel" for="nom">Nom :</label>
@@ -100,17 +105,16 @@
 
                     <label class="styleLabel" for="password">Mot de passe :</label>
                     <input type="password" id="password" name="password" class="styleInput" placeholder="<?php echo $placeholder ?>" /> </br>
-                    
+
                     <?php
-                        if(isset($_REQUEST['id'])) {
-                            echo "<input type='submit' name='Modifier' value='Modifier' id='valider' /> <a href='affichageUsers.php'><input type='reset' value='Annuler'></a>";
-                        }
-                        else {
-                           echo "<input type='submit' name='Valider' value='Envoyer' id='valider' /> <input type='reset' name='Reset' value=' Annuler ' id='reset' />";
-                        }
+                    if (isset($_REQUEST['id'])) {
+                        echo "<input type='submit' name='Modifier' value='Modifier' id='valider' /> <a href='affichageUsers.php'><input type='reset' value='Annuler'></a>";
+                    } else {
+                        echo "<input type='submit' name='Valider' value='Envoyer' id='valider' /> <input type='reset' name='Reset' value=' Annuler ' id='reset' />";
+                    }
                     ?>
-                    
-                    
+
+
                 </fieldset>
             </form>
         </div>
