@@ -83,25 +83,25 @@ function selectOneUser($idUserSearch) {
 function login() {
     session_start();
     $error = "";
-    if (isset($_POST['login'])) {
-        if (empty($_POST['pseudo']) || empty($_POST['mdp'])) {
+    if (isset($_REQUEST['login'])) {
+        if (empty($_REQUEST['pseudo']) || empty($_REQUEST['mdp'])) {
             $error = "Pseudo et Mot de passe sont invalid.";
         }
         vardump($_REQUEST['pseudo']);
     } else {
-        $pseudo = $_POST['pseudo'];
-        $mpd = $_POST['mdp'];
+        $pseudo = $_REQUEST['pseudo'];
+        $mpd = $_REQUEST['mdp'];
 
         $connexion = mysql_connect(DBNAME, USER, PASS);
         $db = mysql_select_db("users", $connexion);
         
-        $query = mysql_query("select * from users where mdp='$mdp' AND pseudo='$pseudo'", $connexion);
+        $query = mysql_query("select * from users where mdp='$mdp' AND pseudo='$pseudo'");
         $rows = mysql_num_rows($query);
         if ($rows == 1) {
             $_SESSION['login_user'] = $pseudo;
             //header("location: affichageUsers.php?id=".$id);
         } else {
-            $error = "Pseudo et Mot de passe sont invalid.";
+            $error = "Pseudo ou Mot de passe sont invalid.";
         }        
         mysql_close($connexion);
     }
