@@ -80,29 +80,16 @@ function selectOneUser($idUserSearch) {
     return $tabRequest = $tab->fetch(PDO::FETCH_ASSOC);
 }
 
-function login() {
+function login($pseudo, $mdpSHA) {
     session_start();
-    $error = "";
-    if (isset($_REQUEST['login'])) {
-        if (empty($_REQUEST['pseudo']) || empty($_REQUEST['mdp'])) {
-            $error = "Pseudo et Mot de passe sont invalid.";
-        }
-        vardump($_REQUEST['pseudo']);
-    } else {
-        $pseudo = $_REQUEST['pseudo'];
-        $mpd = $_REQUEST['mdp'];
-
-        $connexion = mysql_connect(DBNAME, USER, PASS);
-        $db = mysql_select_db("users", $connexion);
-        
-        $query = mysql_query("select * from users where mdp='$mdp' AND pseudo='$pseudo'");
-        $rows = mysql_num_rows($query);
-        if ($rows == 1) {
-            $_SESSION['login_user'] = $pseudo;
-            //header("location: affichageUsers.php?id=".$id);
-        } else {
-            $error = "Pseudo ou Mot de passe sont invalid.";
-        }        
-        mysql_close($connexion);
+    
+    $connect = getConnection()->prepare("SELECT * FROM users WHERE pseudo='$pseudo' AND mdp='$mdpSHA'");
+    $connect->execute();
+    $result = $connect->fetch(PDO::FETCH_ASSOC);
+    
+    if ($result) {
+       echo "Ca marche";
+        $_SESSION['login_user'] = $pseudo;
+        $_SESSION['idUser'] = $result['idUser'];
     }
 }

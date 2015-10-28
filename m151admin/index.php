@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 
 <?php
+    session_start();
+
 include 'function.php';
 
 if (isset($_REQUEST['Valider'])) {
@@ -60,9 +62,9 @@ if (isset($_REQUEST['Modifier'])) {
 }
 
 
-if (isset($_SESSION['login_user'])) {
-    header("location: affichageUsers.php");
-}
+    if(isset($_SESSION['login_user'])){
+        header('location:affichageUsers.php');
+    }
 ?>
 
 <html lang="en">
@@ -74,7 +76,7 @@ if (isset($_SESSION['login_user'])) {
     <body>
         <div id="center">
             <nav>
-                <a href="affichageUsers.php">Liste utilisateurs</a><br />
+                <a href="affichageUsers.php">Liste utilisateurs</a>
                 <a href="login.php">Login</a>
             </nav>
 

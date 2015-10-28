@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 
 <?php
+session_start();
+
 include 'function.php';
 include 'functionTable.php';
 ?>
@@ -14,7 +16,16 @@ include 'functionTable.php';
     <body>
         <div id="centerUsers">
             <nav>
-                <a href="index.php">Inscription</a>
+                <?php
+                    if(isset($_SESSION['login_user'])) {
+                        echo '<a href="logout.php">Logout</a>';
+                    } else {
+                        echo '<a href="index.php">Inscription</a>
+                              <a href="login.php">Login</a>';
+                    }
+                ?>
+                
+                
             </nav>
 
             <?php
