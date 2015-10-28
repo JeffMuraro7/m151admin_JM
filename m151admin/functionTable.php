@@ -1,5 +1,4 @@
 <?php
-
 function buildAllTable() {
     $tableauAll = "<table>";
 
@@ -11,11 +10,11 @@ function buildAllTable() {
                         . "<td>" . $value['prenom'] . "</td>"
                         . "<td class='noBorder'><a href='affichageUsers.php?id=" . $value['idUser'] . "'>Détail</a></td>";
                         
-                        if(isset($_SESSION['login_user'])) {
-                            
-                        } else {
+                        if(isset($_SESSION['adminUser']) && $_SESSION['adminUser'] == 1) {
                             $tableauAll .= "<td class='noBorder'><a href='index.php?id=" . $value['idUser'] . "'>Modifier</a></td>"
                             . "<td class='noBorder'><a href='affichageUsers.php?idDelete=" . $value['idUser'] . "'>Supprimer</a></td>";
+                        } else {
+                            
                         }
                     $tableauAll .=  "</tr>";
     }

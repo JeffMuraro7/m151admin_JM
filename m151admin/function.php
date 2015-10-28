@@ -45,11 +45,11 @@ function insertUser($nom, $prenom, $birthday, $description, $email, $pseudo, $pa
     }
 }
 
-function updateUser($nom, $prenom, $birthday, $description, $email, $pseudo, $password, $id) {
+function updateUser($nom, $prenom, $birthday, $description, $email, $pseudo, $password, $id, $admin) {
     if ((isset($nom)) && (isset($prenom)) && (isset($birthday)) && (isset($description)) && (isset($email)) && (isset($pseudo)) && (isset($password)) && (isset($id))) {
-        $user = getConnection()->prepare('UPDATE users SET nom=:nom, prenom=:prenom, dateNaissance=:birthday, description=:description, email=:email, pseudo=:pseudo, mdp=:password WHERE idUser = ' . $id . ';');
+        $user = getConnection()->prepare('UPDATE users SET nom=:nom, prenom=:prenom, dateNaissance=:birthday, description=:description, email=:email, pseudo=:pseudo, mdp=:password, adminUser=:admin WHERE idUser = ' . $id . ';');
 
-        $shaPassword = sha1($password);
+        //$shaPassword = sha1($password);
 
         $user->bindParam(':nom', $nom, PDO::PARAM_STR);
         $user->bindParam(':prenom', $prenom, PDO::PARAM_STR);
@@ -58,6 +58,7 @@ function updateUser($nom, $prenom, $birthday, $description, $email, $pseudo, $pa
         $user->bindParam(':email', $email, PDO::PARAM_STR);
         $user->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
         $user->bindParam(':password', $shaPassword, PDO::PARAM_STR);
+        $user->bindParam(':admin', $admin, PDO::PARAM_STR);
 
         $user->execute();
     }
@@ -91,5 +92,6 @@ function login($pseudo, $mdpSHA) {
        echo "Ca marche";
         $_SESSION['login_user'] = $pseudo;
         $_SESSION['idUser'] = $result['idUser'];
+        $_SESSION['adminUser'] = $result['adminUser'];
     }
 }

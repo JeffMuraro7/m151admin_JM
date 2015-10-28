@@ -41,13 +41,17 @@ if (isset($_REQUEST['id'])) {
     $pseudo = $value['pseudo'];
     $placeholder = "Laissez vide si vous ne voulez pas le changer!";
 }
+
 if (isset($_REQUEST['Modifier'])) {
+    $value = selectOneUser($idUserSearch);
+    
     $nom = $_REQUEST['nom'];
     $prenom = $_REQUEST['prenom'];
     $birthday = $_REQUEST['birthday'];
     $description = $_REQUEST['description'];
     $email = $_REQUEST['email'];
     $pseudo = $_REQUEST['pseudo'];
+    $admin = $_REQUEST['grpAdmin'];
 
     if (empty($_REQUEST['password'])) {
         $password = $value['mdp'];
@@ -57,13 +61,15 @@ if (isset($_REQUEST['Modifier'])) {
 
     $id = $_REQUEST['id'];
 
-    updateUser($nom, $prenom, $birthday, $description, $email, $pseudo, $password, $id);
+    updateUser($nom, $prenom, $birthday, $description, $email, $pseudo, $password, $id, $admin);
     header('location:affichageUsers.php');
 }
 
 
-    if(isset($_SESSION['login_user'])){
+    if(isset($_SESSION['adminUser']) && $_SESSION['adminUser'] != 1) {
         header('location:affichageUsers.php');
+    } else if(!isset($_SESSION['adminUser'])){
+        
     }
 ?>
 
@@ -76,8 +82,14 @@ if (isset($_REQUEST['Modifier'])) {
     <body>
         <div id="center">
             <nav>
-                <a href="affichageUsers.php">Liste utilisateurs</a>
-                <a href="login.php">Login</a>
+                <?php
+                    if(isset($_SESSION['adminUser']) && $_SESSION['adminUser'] == 1){
+                        echo '<a href="affichageUsers.php">Liste utilisateurs</a>';
+                    } else {
+                        echo '<a href="affichageUsers.php">Liste utilisateurs</a>
+                              <a href="login.php">Login</a>';
+                    }
+                ?>
             </nav>
 
 
@@ -109,13 +121,17 @@ if (isset($_REQUEST['Modifier'])) {
                     <input type="password" id="password" name="password" class="styleInput" placeholder="<?php echo $placeholder ?>" /> </br>
 
                     <?php
-                    if (isset($_REQUEST['id'])) {
-                        echo "<input type='submit' name='Modifier' value='Modifier' id='valider' /> <a href='affichageUsers.php'><input type='reset' value='Annuler'></a>";
-                    } else {
-                        echo "<input type='submit' name='Valider' value='Envoyer' id='valider' /> <input type='reset' name='Reset' value=' Annuler ' id='reset' />";
-                    }
+                        if(isset($_SESSION['adminUser']) && $_SESSION['adminUser'] == 1) {
+                            echo '<input type="radio" name="grpAdmin" value="1"> Admin <br>'
+                            . '<input type="radio" name="grpAdmin" value="0" checked> User <br>';
+                        }
+                    
+                        if (isset($_REQUEST['id'])) {
+                            echo "<input type='submit' name='Modifier' value='Modifier' id='valider' /> ";
+                        } else {
+                            echo "<input type='submit' name='Valider' value='Envoyer' id='valider' /> <input type='reset' name='Reset' value=' Annuler ' id='reset' />";
+                        }
                     ?>
-
 
                 </fieldset>
             </form>
