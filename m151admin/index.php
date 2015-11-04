@@ -53,7 +53,7 @@ if (isset($_REQUEST['Modifier'])) {
     $pseudo = $_REQUEST['pseudo'];
     $admin = $_REQUEST['grpAdmin'];
 
-    if (empty($_REQUEST['password'])) {
+    if (!isset($_REQUEST['password'])) {
         $password = $value['mdp'];
     } else {
         $password = $_REQUEST['password'];
@@ -66,11 +66,11 @@ if (isset($_REQUEST['Modifier'])) {
 }
 
 
-    if(isset($_SESSION['adminUser']) && $_SESSION['adminUser'] != 1) {
-        header('location:affichageUsers.php');
-    } else if(!isset($_SESSION['adminUser'])){
-        
-    }
+//    if(isset($_SESSION['adminUser']) && $_SESSION['adminUser'] != 1) {
+//        header('location:affichageUsers.php');
+//    } else if(!isset($_SESSION['adminUser'])){
+//        
+//    }
 ?>
 
 <html lang="en">
@@ -83,7 +83,7 @@ if (isset($_REQUEST['Modifier'])) {
         <div id="center">
             <nav>
                 <?php
-                    if(isset($_SESSION['adminUser']) && $_SESSION['adminUser'] == 1){
+                    if(isset($_SESSION['idUser'])){
                         echo '<a href="affichageUsers.php">Liste utilisateurs</a>';
                     } else {
                         echo '<a href="affichageUsers.php">Liste utilisateurs</a>

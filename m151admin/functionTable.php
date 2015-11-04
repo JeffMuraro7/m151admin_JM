@@ -5,18 +5,16 @@ function buildAllTable() {
     $tab = selectAllUser();
 
     foreach ($tab as $value) {
-        $tableauAll .= "<tr>"
-                        . "<td>" . $value['nom'] . "</td>"
-                        . "<td>" . $value['prenom'] . "</td>"
-                        . "<td class='noBorder'><a href='affichageUsers.php?id=" . $value['idUser'] . "'>Détail</a></td>";
-                        
-                        if(isset($_SESSION['adminUser']) && $_SESSION['adminUser'] == 1) {
-                            $tableauAll .= "<td class='noBorder'><a href='index.php?id=" . $value['idUser'] . "'>Modifier</a></td>"
-                            . "<td class='noBorder'><a href='affichageUsers.php?idDelete=" . $value['idUser'] . "'>Supprimer</a></td>";
-                        } else {
-                            
-                        }
-                    $tableauAll .=  "</tr>";
+        if(isset($_SESSION['adminUser']) && $_SESSION['adminUser'] == 1) {
+            $tableauAll .= "<tr><td>" . $value['nom'] . "</td><td>" . $value['prenom'] . "</td><td class='noBorder'><a href='affichageUsers.php?id=" . $value['idUser'] . "'>Détail</a></td><td class='noBorder'><a href='index.php?id=" . $value['idUser'] . "'>Modifier</a></td><td class='noBorder'><a href='affichageUsers.php?idDelete=" . $value['idUser'] . "'>Supprimer</a></td>";
+        } else {
+            if($_SESSION['idUser'] == $value['idUser']) {
+                $tableauAll .= "<tr><td>" . $value['nom'] . "</td><td>" . $value['prenom'] . "</td><td class='noBorder'><a href='affichageUsers.php?id=" . $value['idUser'] . "'>Détail</a></td><td class='noBorder'><a href='index.php?id=" . $_SESSION['idUser'] . "'>Modifier</a></td><td class='noBorder'><a href='affichageUsers.php?idDelete=" . $value['idUser'] . "'>Supprimer</a></td>";
+            } else {
+                $tableauAll .= "<tr><td>" . $value['nom'] . "</td><td>" . $value['prenom'] . "</td><td class='noBorder'><a href='affichageUsers.php?id=" . $value['idUser'] . "'>Détail</a></td>";
+            }
+        }
+        $tableauAll .=  "</tr>";
     }
 
     $tableauAll .= "</table>";

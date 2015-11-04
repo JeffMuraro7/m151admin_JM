@@ -49,7 +49,7 @@ function updateUser($nom, $prenom, $birthday, $description, $email, $pseudo, $pa
     if ((isset($nom)) && (isset($prenom)) && (isset($birthday)) && (isset($description)) && (isset($email)) && (isset($pseudo)) && (isset($password)) && (isset($id))) {
         $user = getConnection()->prepare('UPDATE users SET nom=:nom, prenom=:prenom, dateNaissance=:birthday, description=:description, email=:email, pseudo=:pseudo, mdp=:password, adminUser=:admin WHERE idUser = ' . $id . ';');
 
-        //$shaPassword = sha1($password);
+        $shaPassword = sha1($password);
 
         $user->bindParam(':nom', $nom, PDO::PARAM_STR);
         $user->bindParam(':prenom', $prenom, PDO::PARAM_STR);
@@ -82,16 +82,17 @@ function selectOneUser($idUserSearch) {
 }
 
 function login($pseudo, $mdpSHA) {
-    session_start();
-    
-    $connect = getConnection()->prepare("SELECT * FROM users WHERE pseudo='$pseudo' AND mdp='$mdpSHA'");
+    echo $requeteTest;
+    $connect = getConnection()->prepare('SELECT * FROM users WHERE pseudo = "' . $pseudo . '" AND mdp="' . $mdpSHA . '";');
     $connect->execute();
     $result = $connect->fetch(PDO::FETCH_ASSOC);
     
     if ($result) {
-       echo "Ca marche";
         $_SESSION['login_user'] = $pseudo;
         $_SESSION['idUser'] = $result['idUser'];
         $_SESSION['adminUser'] = $result['adminUser'];
+        header('location:affichageUsers.php?id='.$_SESSION['idUser']);
+    } else {
+        header('location:login.php');
     }
 }
