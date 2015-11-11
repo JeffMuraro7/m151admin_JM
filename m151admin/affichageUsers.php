@@ -35,7 +35,8 @@ include 'functionTable.php';
                 header('location:affichageUsers.php');
             }
             if (!isset($_REQUEST['id'])) {
-                $tabAllUser = buildAllTable();
+                $tab = selectAllUser();
+                $tabAllUser = buildAllTable($tab);
                 echo $tabAllUser;
             } else {
                 $tabDetailUser = buildDetailTable();

@@ -40,8 +40,14 @@ function insertUser($nom, $prenom, $birthday, $description, $email, $pseudo, $pa
         $user->bindParam(':email', $email, PDO::PARAM_STR);
         $user->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
         $user->bindParam(':password', $shaPassword, PDO::PARAM_STR);
-
-        $user->execute();
+    
+        try {
+                $result = $user->execute();
+        } catch (Exception $ex) {
+                $result = false;
+        }
+            
+        return $result;
     }
 }
 
@@ -82,17 +88,14 @@ function selectOneUser($idUserSearch) {
 }
 //TODO éviter d'utiliser $_SESSION ici, retourner les valeurs dont vous avez besoin et les stocker dans la session dans un endroit qui est indépendant de la bd
 function login($pseudo, $mdpSHA) {
-    echo $requeteTest;
+    
     $connect = getConnection()->prepare('SELECT * FROM users WHERE pseudo = "' . $pseudo . '" AND mdp="' . $mdpSHA . '";');
     $connect->execute();
     $result = $connect->fetch(PDO::FETCH_ASSOC);
     
     if ($result) {
-        $_SESSION['login_user'] = $pseudo;
-        $_SESSION['idUser'] = $result['idUser'];
-        $_SESSION['adminUser'] = $result['adminUser'];
-        header('location:affichageUsers.php?id='.$_SESSION['idUser']);
+        return $result;
     } else {
         header('location:login.php');
     }
-}
+} 

@@ -14,7 +14,16 @@
         $mdp = $_REQUEST['mdp'];
         $mdpSHA = sha1($mdp);
         
-        login($pseudo, $mdpSHA);
+        $session = login($pseudo, $mdpSHA);
+        
+        if(isset($session))
+        {
+            $_SESSION['login_user'] = $session['pseudoUser'];
+            $_SESSION['idUser'] = $session['idUser'];
+            $_SESSION['adminUser'] = $session['adminUser'];
+            
+            header('location:affichageUsers.php?id='.$_SESSION['idUser']);
+        }
     } else {
         if(empty($_REQUEST['pseudo']) || empty($_REQUEST['mdp'])) {
             $error = "Pseudo ou mot de passe invalide.";

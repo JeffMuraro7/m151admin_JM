@@ -1,16 +1,16 @@
 <?php
 
 
-function buildAllTable() {
+function buildAllTable($tab) {
     $tableauAll = "<table>";
 //TODO éviter l'appel à selectAllUser ici et passer plutot $tab en param, ainsi que l'idUser connecté et le flag adminuser, comme ça votre fonction est entièrement indépendante
-    $tab = selectAllUser();
+    //$tab = selectAllUser();
 
     foreach ($tab as $value) {
         if(isset($_SESSION['adminUser']) && $_SESSION['adminUser'] == 1) {
             $tableauAll .= "<tr><td>" . $value['nom'] . "</td><td>" . $value['prenom'] . "</td><td class='noBorder'><a href='affichageUsers.php?id=" . $value['idUser'] . "'>Détail</a></td><td class='noBorder'><a href='index.php?id=" . $value['idUser'] . "'>Modifier</a></td><td class='noBorder'><a href='affichageUsers.php?idDelete=" . $value['idUser'] . "'>Supprimer</a></td>";
         } else {
-            if($_SESSION['idUser'] == $value['idUser']) {
+            if(isset($_SESSION['adminUser']) && $_SESSION['idUser'] == $value['idUser']) {
                 $tableauAll .= "<tr><td>" . $value['nom'] . "</td><td>" . $value['prenom'] . "</td><td class='noBorder'><a href='affichageUsers.php?id=" . $value['idUser'] . "'>Détail</a></td><td class='noBorder'><a href='index.php?id=" . $_SESSION['idUser'] . "'>Modifier</a></td><td class='noBorder'><a href='affichageUsers.php?idDelete=" . $value['idUser'] . "'>Supprimer</a></td>";
             } else {
                 $tableauAll .= "<tr><td>" . $value['nom'] . "</td><td>" . $value['prenom'] . "</td><td class='noBorder'><a href='affichageUsers.php?id=" . $value['idUser'] . "'>Détail</a></td>";
