@@ -80,7 +80,7 @@ function selectOneUser($idUserSearch) {
     $tab->execute();
     return $tabRequest = $tab->fetch(PDO::FETCH_ASSOC);
 }
-
+//TODO éviter d'utiliser $_SESSION ici, retourner les valeurs dont vous avez besoin et les stocker dans la session dans un endroit qui est indépendant de la bd
 function login($pseudo, $mdpSHA) {
     echo $requeteTest;
     $connect = getConnection()->prepare('SELECT * FROM users WHERE pseudo = "' . $pseudo . '" AND mdp="' . $mdpSHA . '";');

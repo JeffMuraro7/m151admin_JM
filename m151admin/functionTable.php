@@ -1,7 +1,9 @@
 <?php
+
+
 function buildAllTable() {
     $tableauAll = "<table>";
-
+//TODO éviter l'appel à selectAllUser ici et passer plutot $tab en param, ainsi que l'idUser connecté et le flag adminuser, comme ça votre fonction est entièrement indépendante
     $tab = selectAllUser();
 
     foreach ($tab as $value) {
